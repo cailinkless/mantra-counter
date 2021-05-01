@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 export default class Counter extends Component {
 
     state = {
-        count: 0,
+        usercountinput: "",
+        count: "",
         started: false,
         finished: false
     }
@@ -12,7 +13,8 @@ export default class Counter extends Component {
         e.preventDefault()
         console.log(this.state.count)
         this.setState({
-            ...this.state,
+            // count: e.target.querySelector("input").value,
+            count: this.state.userCountInput,
             started: true
         })
     }
@@ -22,8 +24,26 @@ export default class Counter extends Component {
         console.log(e.target.value)
         this.setState({
             ...this.state,
-            count: e.target.value
+            finished: "",
+            userCountInput: e.target.value
         })
+    }
+
+    handleClick = (e) => {
+        if (this.state.count - 1 === 0) {
+            this.setState({
+                ...this.state,
+                count: this.state.count - 1,
+                started: "",
+                finished: true
+            })
+        } else {
+            this.setState({
+                ...this.state,
+                count: this.state.count - 1
+            })
+        }
+
     }
 
     render() {
@@ -36,7 +56,8 @@ export default class Counter extends Component {
                     <br/><br/>
                     <input type="submit" value="Start Meditation"></input>
                 </form>
-                {this.state.started ? <h1>{this.state.count}</h1> : null}
+                {this.state.started ? <div><h1>{this.state.count}</h1><button onClick={this.handleClick}>Click After Each Repetition</button></div> : null}
+                {this.state.finished ? <div><h1>You completed {this.state.userCountInput} mantra repetitions.</h1></div> : null}
             </div>
         )
     }
