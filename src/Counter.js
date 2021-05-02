@@ -63,7 +63,7 @@ export default class Counter extends Component {
                     <br/><br/>
                     {this.state.started || this.state.finished ? null : <input type="submit" value="Start Meditation"></input>}
                 </form>
-                {this.state.started ? <div><h1>{this.state.count}</h1><button onClick={this.handleClick}>Click After Each Repetition</button></div> : null}
+                {this.state.started ? <div><h1>{this.state.count}</h1><button onClick={this.handleClick} className="btn-circle btn-xl"><i class="fas fa-om"></i></button></div> : null}
                 {this.state.finished ? <div><h1>You completed {this.state.userCountInput} mantra repetitions.</h1></div> : null}
                 {this.state.finished ? <div><button onClick={this.reset}>Reset</button></div> : null}
             </div>
