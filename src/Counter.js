@@ -34,7 +34,7 @@ export default class Counter extends Component {
             this.setState({
                 ...this.state,
                 count: this.state.count - 1,
-                started: "",
+                started: false,
                 finished: true
             })
         } else {
@@ -44,6 +44,13 @@ export default class Counter extends Component {
             })
         }
 
+    }
+
+    reset = (e) => {
+        this.setState({
+            ...this.state,
+            finished: false,
+        })
     }
 
     render() {
@@ -58,6 +65,7 @@ export default class Counter extends Component {
                 </form>
                 {this.state.started ? <div><h1>{this.state.count}</h1><button onClick={this.handleClick}>Click After Each Repetition</button></div> : null}
                 {this.state.finished ? <div><h1>You completed {this.state.userCountInput} mantra repetitions.</h1></div> : null}
+                {this.state.finished ? <div><button onClick={this.reset}>Reset</button></div> : null}
             </div>
         )
     }
